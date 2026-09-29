@@ -1,0 +1,38 @@
+/* Fontes e Ajustes Globais */
+body {
+  font-family: 'Poppins', 'Lexend', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Tab Ativa */
+.tab-btn.active {
+  background-color: #f43f5e !important;
+  color: #ffffff !important;
+  border-color: #f43f5e !important;
+  box-shadow: 0 4px 6px -1px rgba(244, 63, 94, 0.2);
+}
+
+/* Transições Suaves */
+.view-content {
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ocultar barra de rolagem horizontal das abas mantendo rolagem ativa */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
