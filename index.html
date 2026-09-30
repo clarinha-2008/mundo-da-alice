@@ -22,16 +22,16 @@
 
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-pink-50 text-slate-800 font-sans pb-16">
+<body class="bg-pink-100 text-slate-800 font-sans pb-16">
 
   <!-- HEADER / STATS BAR -->
-  <header class="cloud-border bg-white sticky top-0 z-40 shadow-sm border-b-2 border-pink-100">
+  <header class="bg-white sticky top-0 z-40 shadow-md border-b-4 border-pink-300">
     <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       
       <!-- User Profile -->
       <div class="flex items-center gap-3">
         <div class="relative">
-          <div class="w-12 h-12 rounded-full bg-pink-100 border-2 border-pink-300 flex items-center justify-center text-2xl shadow-inner">
+          <div class="w-12 h-12 rounded-full bg-pink-200 border-2 border-pink-400 flex items-center justify-center text-2xl shadow-inner">
             👑
           </div>
           <span class="absolute -bottom-1 -right-1 bg-amber-400 text-white text-[10px] font-extrabold px-1.5 py-0.5 rounded-full border border-white">
@@ -42,30 +42,30 @@
           <h1 class="font-extrabold text-pink-600 text-base md:text-lg flex items-center gap-1">
             Princesa Alice <span class="text-xs">🎀</span>
           </h1>
-          <div class="w-28 md:w-36 bg-pink-100 h-2.5 rounded-full overflow-hidden mt-0.5 border border-pink-200">
-            <div id="xp-bar" class="bg-gradient-to-r from-pink-400 to-purple-400 h-full rounded-full transition-all duration-500" style="width: 45%;"></div>
+          <div class="w-28 md:w-36 bg-pink-200 h-3 rounded-full overflow-hidden mt-0.5 border border-pink-300">
+            <div id="xp-bar" class="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 h-full rounded-full transition-all duration-500" style="width: 45%;"></div>
           </div>
-          <span class="text-[10px] text-pink-400 font-semibold"><span id="user-xp">450</span> / 1000 XP</span>
+          <span class="text-[10px] text-pink-500 font-bold"><span id="user-xp">450</span> / 1000 XP</span>
         </div>
       </div>
 
       <!-- Currency Stats -->
       <div class="flex items-center gap-2 md:gap-4">
         <!-- Streak -->
-        <div class="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 px-3 py-1.5 rounded-2xl flex items-center gap-1.5 shadow-sm">
-          <span class="text-lg">🔥</span>
+        <div class="bg-amber-100 border-2 border-amber-300 px-3 py-1.5 rounded-2xl flex items-center gap-1.5 shadow-sm">
+          <span class="text-xl">🔥</span>
           <div class="text-left">
-            <div class="text-[10px] uppercase font-bold text-amber-600 leading-tight">Sequência</div>
-            <div class="text-xs font-black text-amber-700" id="user-streak">3 Dias</div>
+            <div class="text-[10px] uppercase font-bold text-amber-700 leading-tight">Sequência</div>
+            <div class="text-xs font-black text-amber-800" id="user-streak">3 Dias</div>
           </div>
         </div>
 
         <!-- Stars -->
-        <div class="bg-gradient-to-r from-yellow-50 to-amber-50 border border-yellow-300 px-3 py-1.5 rounded-2xl flex items-center gap-1.5 shadow-sm">
-          <span class="text-xl text-yellow-500 animate-bounce">⭐</span>
+        <div class="bg-yellow-100 border-2 border-yellow-400 px-3 py-1.5 rounded-2xl flex items-center gap-1.5 shadow-sm">
+          <span class="text-2xl text-yellow-500 animate-bounce">⭐</span>
           <div class="text-left">
-            <div class="text-[10px] uppercase font-bold text-yellow-600 leading-tight">Estrelas</div>
-            <div class="text-sm font-black text-amber-600" id="user-stars">120</div>
+            <div class="text-[10px] uppercase font-bold text-amber-700 leading-tight">Estrelas</div>
+            <div class="text-sm font-black text-amber-800" id="user-stars">120</div>
           </div>
         </div>
       </div>
@@ -73,26 +73,36 @@
     </div>
   </header>
 
-  <!-- NAVIGATION TABS -->
-  <nav class="max-w-5xl mx-auto px-4 mt-4">
-    <div class="flex gap-2 overflow-x-auto pb-2 scrollbar-none text-xs md:text-sm font-bold">
-      <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn active px-4 py-2.5 rounded-2xl bg-white text-pink-500 shadow-sm border border-pink-200 flex items-center gap-2 whitespace-nowrap">
-        <span>👑</span> Painel Principal
+  <!-- NAVIGATION TABS WITH SCROLL ARROWS -->
+  <nav class="max-w-5xl mx-auto px-4 mt-4 relative">
+    <div class="flex items-center gap-1">
+      <button onclick="scrollTabs('left')" class="p-2.5 bg-white text-pink-600 rounded-2xl shadow-sm border-2 border-pink-200 hover:bg-pink-50 transition shrink-0 z-10">
+        <i class="fa-solid fa-chevron-left text-xs"></i>
       </button>
-      <button onclick="switchTab('dever')" id="tab-dever" class="tab-btn px-4 py-2.5 rounded-2xl bg-white text-slate-500 shadow-sm border border-pink-100 flex items-center gap-2 whitespace-nowrap">
-        <span>✏️</span> Dever da Escola
-      </button>
-      <button onclick="switchTab('portugues')" id="tab-portugues" class="tab-btn px-4 py-2.5 rounded-2xl bg-white text-slate-500 shadow-sm border border-pink-100 flex items-center gap-2 whitespace-nowrap">
-        <span>📚</span> Português & Pronomes
-      </button>
-      <button onclick="switchTab('matematica')" id="tab-matematica" class="tab-btn px-4 py-2.5 rounded-2xl bg-white text-slate-500 shadow-sm border border-pink-100 flex items-center gap-2 whitespace-nowrap">
-        <span>📐</span> Matemática & Divisão
-      </button>
-      <button onclick="switchTab('etica')" id="tab-etica" class="tab-btn px-4 py-2.5 rounded-2xl bg-white text-slate-500 shadow-sm border border-pink-100 flex items-center gap-2 whitespace-nowrap">
-        <span>♻️</span> Ética & Reciclagem
-      </button>
-      <button onclick="switchTab('loja')" id="tab-loja" class="tab-btn px-4 py-2.5 rounded-2xl bg-white text-slate-500 shadow-sm border border-pink-100 flex items-center gap-2 whitespace-nowrap">
-        <span>🎁</span> Lojinha de Prêmios
+
+      <div id="tabs-container" class="flex gap-2 overflow-x-auto py-1 scroll-smooth scrollbar-none text-xs md:text-sm font-extrabold w-full">
+        <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn active px-4 py-2.5 rounded-2xl bg-white text-pink-600 shadow-sm border-2 border-pink-300 flex items-center gap-2 whitespace-nowrap shrink-0">
+          <span>👑</span> Painel Principal
+        </button>
+        <button onclick="switchTab('dever')" id="tab-dever" class="tab-btn px-4 py-2.5 rounded-2xl bg-white text-purple-600 shadow-sm border-2 border-purple-200 flex items-center gap-2 whitespace-nowrap shrink-0">
+          <span>✏️</span> Dever da Escola
+        </button>
+        <button onclick="switchTab('portugues')" id="tab-portugues" class="tab-btn px-4 py-2.5 rounded-2xl bg-white text-blue-600 shadow-sm border-2 border-blue-200 flex items-center gap-2 whitespace-nowrap shrink-0">
+          <span>📚</span> Português & Pronomes
+        </button>
+        <button onclick="switchTab('matematica')" id="tab-matematica" class="tab-btn px-4 py-2.5 rounded-2xl bg-white text-pink-600 shadow-sm border-2 border-pink-200 flex items-center gap-2 whitespace-nowrap shrink-0">
+          <span>📐</span> Matemática & Divisão
+        </button>
+        <button onclick="switchTab('etica')" id="tab-etica" class="tab-btn px-4 py-2.5 rounded-2xl bg-white text-emerald-600 shadow-sm border-2 border-emerald-200 flex items-center gap-2 whitespace-nowrap shrink-0">
+          <span>♻️</span> Ética & Reciclagem
+        </button>
+        <button onclick="switchTab('loja')" id="tab-loja" class="tab-btn px-4 py-2.5 rounded-2xl bg-white text-amber-600 shadow-sm border-2 border-amber-200 flex items-center gap-2 whitespace-nowrap shrink-0">
+          <span>🎁</span> Lojinha de Prêmios
+        </button>
+      </div>
+
+      <button onclick="scrollTabs('right')" class="p-2.5 bg-white text-pink-600 rounded-2xl shadow-sm border-2 border-pink-200 hover:bg-pink-50 transition shrink-0 z-10">
+        <i class="fa-solid fa-chevron-right text-xs"></i>
       </button>
     </div>
   </nav>
@@ -102,103 +112,82 @@
 
     <!-- 1. TAB: DASHBOARD -->
     <div id="view-dashboard" class="view-content">
-      <!-- Welcome Banner -->
-      <div class="bg-gradient-to-r from-pink-300 via-purple-300 to-pink-200 rounded-3xl p-6 text-white shadow-md relative overflow-hidden mb-6">
+      <div class="bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 rounded-3xl p-6 text-white shadow-lg relative overflow-hidden mb-6 border-4 border-pink-300">
         <div class="relative z-10">
-          <span class="bg-white/30 text-white text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wider backdrop-blur-sm">
-            Estudos de Hoje
+          <span class="bg-yellow-400 text-slate-900 text-xs px-3 py-1 rounded-full font-black uppercase tracking-wider shadow">
+            Estudos de Hoje ✨
           </span>
-          <h2 class="text-2xl md:text-3xl font-black mt-2 drop-shadow-sm">Olá, Princesa Alice! ✨</h2>
-          <p class="text-white/90 text-sm mt-1 max-w-lg">
-            Sua missão diária está pronta. Complete as lições de Matemática, Português e Ética para acumular Estrelas de Ouro e resgatar seus prêmios!
+          <h2 class="text-2xl md:text-3xl font-black mt-2 drop-shadow-md">Olá, Princesa Alice! 👑</h2>
+          <p class="text-white font-medium text-sm mt-1 max-w-lg drop-shadow">
+            Sua missão diária está pronta! Responda às tarefas para ganhar estrelas e desbloquear seus prêmios na lojinha.
           </p>
         </div>
         <div class="absolute -right-4 -bottom-8 text-8xl opacity-30 select-none">🏰</div>
       </div>
 
-      <!-- Quick Action Cards Grid -->
-      <h3 class="font-extrabold text-slate-700 text-lg mb-3 flex items-center gap-2">
+      <h3 class="font-extrabold text-slate-800 text-lg mb-3 flex items-center gap-2">
         <span>🎯</span> Missões Diárias
       </h3>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- Homework Card -->
-        <div onclick="switchTab('dever')" class="bg-white p-5 rounded-3xl border-2 border-purple-100 shadow-sm hover:shadow-md transition cursor-pointer relative overflow-hidden group">
+        <!-- Cards Diários -->
+        <div onclick="switchTab('dever')" class="bg-purple-100 p-5 rounded-3xl border-3 border-purple-300 shadow-md hover:scale-102 transition cursor-pointer relative overflow-hidden group">
           <div class="flex justify-between items-start">
-            <div class="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-200 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-              📝
-            </div>
-            <span class="bg-purple-100 text-purple-700 text-xs font-bold px-2.5 py-1 rounded-full">+50 ⭐</span>
+            <div class="w-12 h-12 rounded-2xl bg-purple-200 border-2 border-purple-400 flex items-center justify-center text-2xl group-hover:rotate-12 transition">📝</div>
+            <span class="bg-purple-600 text-white font-black text-xs px-3 py-1 rounded-full shadow">+50 ⭐</span>
           </div>
-          <h4 class="font-bold text-slate-800 text-base mt-3">Dever de Casa da Escola</h4>
-          <p class="text-xs text-slate-500 mt-1">Conclua seus exercícios em micropassos sem estresse.</p>
-          <div class="mt-4 flex justify-between items-center text-xs font-bold text-purple-600">
-            <span>Começar Agora</span>
-            <span>➔</span>
+          <h4 class="font-extrabold text-purple-900 text-base mt-3">Dever de Casa da Escola</h4>
+          <p class="text-xs text-purple-700 font-medium mt-1">Conclua seus exercícios em micropassos sem estresse.</p>
+          <div class="mt-4 flex justify-between items-center text-xs font-black text-purple-800">
+            <span>Começar Agora</span><span>➔</span>
           </div>
         </div>
 
-        <!-- Math Card -->
-        <div onclick="switchTab('matematica')" class="bg-white p-5 rounded-3xl border-2 border-pink-100 shadow-sm hover:shadow-md transition cursor-pointer relative overflow-hidden group">
+        <div onclick="switchTab('matematica')" class="bg-pink-100 p-5 rounded-3xl border-3 border-pink-300 shadow-md hover:scale-102 transition cursor-pointer relative overflow-hidden group">
           <div class="flex justify-between items-start">
-            <div class="w-12 h-12 rounded-2xl bg-pink-50 border border-pink-200 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-              🧩
-            </div>
-            <span class="bg-pink-100 text-pink-700 text-xs font-bold px-2.5 py-1 rounded-full">+40 ⭐</span>
+            <div class="w-12 h-12 rounded-2xl bg-pink-200 border-2 border-pink-400 flex items-center justify-center text-2xl group-hover:rotate-12 transition">🧩</div>
+            <span class="bg-pink-600 text-white font-black text-xs px-3 py-1 rounded-full shadow">+40 ⭐</span>
           </div>
-          <h4 class="font-bold text-slate-800 text-base mt-3">Matemática Mágica</h4>
-          <p class="text-xs text-slate-500 mt-1">Divisão simples, figuras geométricas e tabuada divertida.</p>
-          <div class="mt-4 flex justify-between items-center text-xs font-bold text-pink-600">
-            <span>Praticar</span>
-            <span>➔</span>
+          <h4 class="font-extrabold text-pink-900 text-base mt-3">Matemática Mágica</h4>
+          <p class="text-xs text-pink-700 font-medium mt-1">Divisão simples, figuras geométricas e tabuada divertida.</p>
+          <div class="mt-4 flex justify-between items-center text-xs font-black text-pink-800">
+            <span>Praticar</span><span>➔</span>
           </div>
         </div>
 
-        <!-- Portuguese Card -->
-        <div onclick="switchTab('portugues')" class="bg-white p-5 rounded-3xl border-2 border-blue-100 shadow-sm hover:shadow-md transition cursor-pointer relative overflow-hidden group">
+        <div onclick="switchTab('portugues')" class="bg-blue-100 p-5 rounded-3xl border-3 border-blue-300 shadow-md hover:scale-102 transition cursor-pointer relative overflow-hidden group">
           <div class="flex justify-between items-start">
-            <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-              📖
-            </div>
-            <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-full">+35 ⭐</span>
+            <div class="w-12 h-12 rounded-2xl bg-blue-200 border-2 border-blue-400 flex items-center justify-center text-2xl group-hover:rotate-12 transition">📖</div>
+            <span class="bg-blue-600 text-white font-black text-xs px-3 py-1 rounded-full shadow">+35 ⭐</span>
           </div>
-          <h4 class="font-bold text-slate-800 text-base mt-3">Português & Leitura</h4>
-          <p class="text-xs text-slate-500 mt-1">Leitura guiada e desafio de pronomes possessivos/demonstrativos.</p>
-          <div class="mt-4 flex justify-between items-center text-xs font-bold text-blue-600">
-            <span>Ler História</span>
-            <span>➔</span>
+          <h4 class="font-extrabold text-blue-900 text-base mt-3">Português & Leitura</h4>
+          <p class="text-xs text-blue-700 font-medium mt-1">Leitura guiada e desafio de pronomes possessivos/demonstrativos.</p>
+          <div class="mt-4 flex justify-between items-center text-xs font-black text-blue-800">
+            <span>Ler História</span><span>➔</span>
           </div>
         </div>
 
-        <!-- Ethics Card -->
-        <div onclick="switchTab('etica')" class="bg-white p-5 rounded-3xl border-2 border-emerald-100 shadow-sm hover:shadow-md transition cursor-pointer relative overflow-hidden group">
+        <div onclick="switchTab('etica')" class="bg-emerald-100 p-5 rounded-3xl border-3 border-emerald-300 shadow-md hover:scale-102 transition cursor-pointer relative overflow-hidden group">
           <div class="flex justify-between items-start">
-            <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-              🌱
-            </div>
-            <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2.5 py-1 rounded-full">+30 ⭐</span>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-200 border-2 border-emerald-400 flex items-center justify-center text-2xl group-hover:rotate-12 transition">🌱</div>
+            <span class="bg-emerald-600 text-white font-black text-xs px-3 py-1 rounded-full shadow">+30 ⭐</span>
           </div>
-          <h4 class="font-bold text-slate-800 text-base mt-3">Ética & Reciclagem</h4>
-          <p class="text-xs text-slate-500 mt-1">Aprenda os 5 Rs da sustentabilidade e ajude o planeta.</p>
-          <div class="mt-4 flex justify-between items-center text-xs font-bold text-emerald-600">
-            <span>Salvar o Planeta</span>
-            <span>➔</span>
+          <h4 class="font-extrabold text-emerald-900 text-base mt-3">Ética & Reciclagem</h4>
+          <p class="text-xs text-emerald-700 font-medium mt-1">Aprenda os 5 Rs da sustentabilidade e ajude o planeta.</p>
+          <div class="mt-4 flex justify-between items-center text-xs font-black text-emerald-800">
+            <span>Salvar o Planeta</span><span>➔</span>
           </div>
         </div>
 
-        <!-- Rewards Card -->
-        <div onclick="switchTab('loja')" class="bg-white p-5 rounded-3xl border-2 border-amber-100 shadow-sm hover:shadow-md transition cursor-pointer relative overflow-hidden group">
+        <div onclick="switchTab('loja')" class="bg-amber-100 p-5 rounded-3xl border-3 border-amber-300 shadow-md hover:scale-102 transition cursor-pointer relative overflow-hidden group">
           <div class="flex justify-between items-start">
-            <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-              🎁
-            </div>
-            <span class="bg-amber-100 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-full">Resgatar</span>
+            <div class="w-12 h-12 rounded-2xl bg-amber-200 border-2 border-amber-400 flex items-center justify-center text-2xl group-hover:rotate-12 transition">🎁</div>
+            <span class="bg-amber-600 text-white font-black text-xs px-3 py-1 rounded-full shadow">Resgatar</span>
           </div>
-          <h4 class="font-bold text-slate-800 text-base mt-3">Lojinha de Prêmios</h4>
-          <p class="text-xs text-slate-500 mt-1">Troque suas estrelas por tempo de tela, passeios e escolhas!</p>
-          <div class="mt-4 flex justify-between items-center text-xs font-bold text-amber-600">
-            <span>Ver Lojinha</span>
-            <span>➔</span>
+          <h4 class="font-extrabold text-amber-900 text-base mt-3">Lojinha de Prêmios</h4>
+          <p class="text-xs text-amber-700 font-medium mt-1">Troque suas estrelas por tempo de tela, sobremesas e passeios!</p>
+          <div class="mt-4 flex justify-between items-center text-xs font-black text-amber-800">
+            <span>Ver Lojinha</span><span>➔</span>
           </div>
         </div>
       </div>
@@ -206,36 +195,31 @@
 
     <!-- 2. TAB: DEVER DE CASA DA ESCOLA -->
     <div id="view-dever" class="view-content hidden">
-      <div class="bg-white rounded-3xl p-6 border-2 border-purple-100 shadow-sm">
-        <div class="flex items-center justify-between border-b pb-4 border-slate-100">
+      <div class="bg-purple-50 rounded-3xl p-6 border-3 border-purple-300 shadow-md">
+        <div class="flex items-center justify-between border-b-2 pb-4 border-purple-200">
           <div>
-            <h2 class="text-xl font-extrabold text-purple-700 flex items-center gap-2">
-              <span>📝</span> Dever de Casa da Escola
-            </h2>
-            <p class="text-xs text-slate-500">Marque cada micropasso conforme for terminando!</p>
+            <h2 class="text-xl font-black text-purple-800 flex items-center gap-2"><span>📝</span> Dever de Casa da Escola</h2>
+            <p class="text-xs text-purple-600 font-medium">Marque cada micropasso conforme for terminando!</p>
           </div>
-          <span class="bg-purple-100 text-purple-700 font-bold text-xs px-3 py-1.5 rounded-full">
-            Recompensa: +50 ⭐
-          </span>
+          <span class="bg-purple-600 text-white font-black text-xs px-3 py-1.5 rounded-full shadow">Recompensa: +50 ⭐</span>
         </div>
 
-        <!-- Checklists -->
         <div class="mt-6 space-y-3" id="homework-list">
-          <label class="flex items-center gap-3 p-3.5 bg-purple-50/50 rounded-2xl border border-purple-100 cursor-pointer hover:bg-purple-50 transition">
-            <input type="checkbox" onchange="toggleHomeworkStep(this)" class="w-5 h-5 rounded text-purple-600 focus:ring-purple-400">
-            <span class="text-sm font-semibold text-slate-700">1. Organizar os cadernos e lápis na mesa</span>
+          <label class="flex items-center gap-3 p-3.5 bg-white rounded-2xl border-2 border-purple-200 cursor-pointer hover:bg-purple-100 transition shadow-sm">
+            <input type="checkbox" onchange="toggleHomeworkStep()" class="w-5 h-5 rounded text-purple-600 focus:ring-purple-400">
+            <span class="text-sm font-bold text-slate-700">1. Organizar os cadernos e lápis na mesa</span>
           </label>
-          <label class="flex items-center gap-3 p-3.5 bg-purple-50/50 rounded-2xl border border-purple-100 cursor-pointer hover:bg-purple-50 transition">
-            <input type="checkbox" onchange="toggleHomeworkStep(this)" class="w-5 h-5 rounded text-purple-600 focus:ring-purple-400">
-            <span class="text-sm font-semibold text-slate-700">2. Resolver os exercícios de Matemática ou Português</span>
+          <label class="flex items-center gap-3 p-3.5 bg-white rounded-2xl border-2 border-purple-200 cursor-pointer hover:bg-purple-100 transition shadow-sm">
+            <input type="checkbox" onchange="toggleHomeworkStep()" class="w-5 h-5 rounded text-purple-600 focus:ring-purple-400">
+            <span class="text-sm font-bold text-slate-700">2. Resolver os exercícios de Matemática ou Português</span>
           </label>
-          <label class="flex items-center gap-3 p-3.5 bg-purple-50/50 rounded-2xl border border-purple-100 cursor-pointer hover:bg-purple-50 transition">
-            <input type="checkbox" onchange="toggleHomeworkStep(this)" class="w-5 h-5 rounded text-purple-600 focus:ring-purple-400">
-            <span class="text-sm font-semibold text-slate-700">3. Revisar tudo com paciência antes de guardar</span>
+          <label class="flex items-center gap-3 p-3.5 bg-white rounded-2xl border-2 border-purple-200 cursor-pointer hover:bg-purple-100 transition shadow-sm">
+            <input type="checkbox" onchange="toggleHomeworkStep()" class="w-5 h-5 rounded text-purple-600 focus:ring-purple-400">
+            <span class="text-sm font-bold text-slate-700">3. Revisar tudo com paciência antes de guardar</span>
           </label>
         </div>
 
-        <button id="btn-finish-homework" onclick="completeHomework()" disabled class="w-full mt-6 py-3 bg-slate-200 text-slate-400 font-bold rounded-2xl transition cursor-not-allowed">
+        <button id="btn-finish-homework" onclick="completeHomework()" disabled class="w-full mt-6 py-3 bg-slate-300 text-slate-500 font-extrabold rounded-2xl transition cursor-not-allowed">
           Concluir Dever e Ganhar +50 Estrelas 🎉
         </button>
       </div>
@@ -243,38 +227,50 @@
 
     <!-- 3. TAB: PORTUGUÊS & PRONOMES -->
     <div id="view-portugues" class="view-content hidden">
-      <div class="bg-white rounded-3xl p-6 border-2 border-blue-100 shadow-sm space-y-6">
+      <div class="bg-blue-50 rounded-3xl p-6 border-3 border-blue-300 shadow-md space-y-6">
         <div>
-          <h2 class="text-xl font-extrabold text-blue-700 flex items-center gap-2">
-            <span>📚</span> Leitura e Pronomes
-          </h2>
-          <p class="text-xs text-slate-500">Leia a história curta com atenção e responda ao desafio!</p>
+          <h2 class="text-xl font-black text-blue-800 flex items-center gap-2"><span>📚</span> Leitura e Pronomes</h2>
+          <p class="text-xs text-blue-600 font-medium">Responda às 3 perguntas sobre a história!</p>
         </div>
 
-        <!-- Story Block -->
-        <div class="bg-blue-50/60 p-4 rounded-2xl border border-blue-100 text-sm leading-relaxed text-slate-700">
-          <p class="font-semibold text-blue-900 mb-2">📖 A Ursinha e seus Brinquedos Mágicos</p>
+        <div class="bg-white p-4 rounded-2xl border-2 border-blue-200 text-sm leading-relaxed text-slate-700 shadow-sm">
+          <p class="font-bold text-blue-900 mb-2">📖 A Ursinha e seus Brinquedos Mágicos</p>
           <p>
             A ursinha Lili guardava seus brinquedos em um baú. Um dia ela disse: 
             <em>"— Este livro de histórias é <strong>meu</strong>, mas aquela bola colorida é do <strong>nosso</strong> amigo coelho!"</em>
           </p>
         </div>
 
-        <!-- Quiz 1: Pronome Possessivo -->
-        <div class="border-t pt-4 border-slate-100">
-          <h3 class="font-bold text-slate-800 text-sm mb-3">1. Na frase "Este livro é meu", a palavra "meu" indica:</h3>
+        <!-- Pergunta 1 -->
+        <div id="port-q1" class="bg-white p-4 rounded-2xl border-2 border-blue-200 shadow-sm">
+          <h3 class="font-extrabold text-slate-800 text-sm mb-3">1. Na frase "Este livro é meu", a palavra "meu" indica:</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="quiz-port-1">
-            <button onclick="answerQuiz('quiz-port-1', false, this)" class="p-3 text-left border rounded-xl hover:border-pink-300 text-xs font-semibold text-slate-700">Uma ação de correr</button>
-            <button onclick="answerQuiz('quiz-port-1', true, this)" class="p-3 text-left border rounded-xl hover:border-pink-300 text-xs font-semibold text-slate-700">Posse (Pronome Possessivo) ✨</button>
+            <button onclick="answerQuiz('quiz-port-1', false, this, 0, 0, 'next-port-1')" class="p-3 text-left border-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50">Uma ação de correr</button>
+            <button onclick="answerQuiz('quiz-port-1', true, this, 20, 30, 'next-port-1')" class="p-3 text-left border-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50">Posse (Pronome Possessivo) ✨</button>
           </div>
+          <button id="next-port-1" onclick="showNextQuestion('port-q1', 'port-q2')" class="hidden w-full mt-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-xl shadow transition">
+            Próxima Pergunta ➔
+          </button>
         </div>
 
-        <!-- Quiz 2: Pronome Demonstrativo -->
-        <div class="border-t pt-4 border-slate-100">
-          <h3 class="font-bold text-slate-800 text-sm mb-3">2. Qual palavra é um Pronome Demonstrativo que mostra onde algo está?</h3>
+        <!-- Pergunta 2 (NOVA) -->
+        <div id="port-q2" class="hidden bg-white p-4 rounded-2xl border-2 border-blue-200 shadow-sm">
+          <h3 class="font-extrabold text-slate-800 text-sm mb-3">2. Qual palavra é um Pronome Demonstrativo que indica algo distante?</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="quiz-port-2">
-            <button onclick="answerQuiz('quiz-port-2', true, this)" class="p-3 text-left border rounded-xl hover:border-pink-300 text-xs font-semibold text-slate-700">Aquele (mostra algo distante) ✨</button>
-            <button onclick="answerQuiz('quiz-port-2', false, this)" class="p-3 text-left border rounded-xl hover:border-pink-300 text-xs font-semibold text-slate-700">Bonito</button>
+            <button onclick="answerQuiz('quiz-port-2', true, this, 20, 30, 'next-port-2')" class="p-3 text-left border-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50">Aquela ✨</button>
+            <button onclick="answerQuiz('quiz-port-2', false, this, 0, 0, 'next-port-2')" class="p-3 text-left border-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50">Nossa</button>
+          </div>
+          <button id="next-port-2" onclick="showNextQuestion('port-q2', 'port-q3')" class="hidden w-full mt-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-xl shadow transition">
+            Próxima Pergunta ➔
+          </button>
+        </div>
+
+        <!-- Pergunta 3 (NOVA) -->
+        <div id="port-q3" class="hidden bg-white p-4 rounded-2xl border-2 border-blue-200 shadow-sm">
+          <h3 class="font-extrabold text-slate-800 text-sm mb-3">3. Na frase "Aquele brinquedo é nosso", a palavra "nosso" pertence a quem?</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="quiz-port-3">
+            <button onclick="answerQuiz('quiz-port-3', false, this, 0, 0, null)" class="p-3 text-left border-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50">Somente a uma pessoa</button>
+            <button onclick="answerQuiz('quiz-port-3', true, this, 20, 30, null)" class="p-3 text-left border-2 rounded-xl text-xs font-bold text-slate-700 bg-slate-50">Ao grupo de amigos (Pronome Possessivo) ✨</button>
           </div>
         </div>
       </div>
@@ -282,43 +278,47 @@
 
     <!-- 4. TAB: MATEMÁTICA & DIVISÃO -->
     <div id="view-matematica" class="view-content hidden">
-      <div class="bg-white rounded-3xl p-6 border-2 border-pink-100 shadow-sm space-y-6">
+      <div class="bg-pink-50 rounded-3xl p-6 border-3 border-pink-300 shadow-md space-y-6">
         <div>
-          <h2 class="text-xl font-extrabold text-pink-700 flex items-center gap-2">
-            <span>📐</span> Matemática Mágica
-          </h2>
-          <p class="text-xs text-slate-500">Divisão, Figuras Geométricas e Tabuada!</p>
+          <h2 class="text-xl font-black text-pink-800 flex items-center gap-2"><span>📐</span> Matemática Mágica</h2>
+          <p class="text-xs text-pink-600 font-medium">Complete os 3 desafios numéricos!</p>
         </div>
 
-        <!-- Quiz 1: Divisão -->
-        <div class="border-t pt-4 border-slate-100">
-          <h3 class="font-bold text-slate-800 text-sm mb-2">1. Desafio da Divisão 🍪</h3>
-          <p class="text-xs text-slate-600 mb-3">Alice tem 12 biscoitos para dividir igualmente entre 3 amigas. Quantos biscoitos cada amiga recebe?</p>
+        <!-- Pergunta 1 -->
+        <div id="math-q1" class="bg-white p-4 rounded-2xl border-2 border-pink-200 shadow-sm">
+          <h3 class="font-extrabold text-slate-800 text-sm mb-2">1. Desafio da Divisão 🍪</h3>
+          <p class="text-xs text-slate-600 mb-3">Alice tem 12 biscoitos para dividir igualmente entre 3 amigas. Quantos biscoitos cada uma ganha?</p>
           <div class="grid grid-cols-3 gap-2" id="quiz-math-1">
-            <button onclick="answerQuiz('quiz-math-1', false, this)" class="p-3 border rounded-xl text-center text-sm font-bold text-slate-700">3</button>
-            <button onclick="answerQuiz('quiz-math-1', true, this)" class="p-3 border rounded-xl text-center text-sm font-bold text-slate-700">4 Biscoitos ✨</button>
-            <button onclick="answerQuiz('quiz-math-1', false, this)" class="p-3 border rounded-xl text-center text-sm font-bold text-slate-700">6</button>
+            <button onclick="answerQuiz('quiz-math-1', false, this, 0, 0, 'next-math-1')" class="p-3 border-2 rounded-xl text-center text-sm font-bold text-slate-700 bg-slate-50">3</button>
+            <button onclick="answerQuiz('quiz-math-1', true, this, 20, 30, 'next-math-1')" class="p-3 border-2 rounded-xl text-center text-sm font-bold text-slate-700 bg-slate-50">4 Biscoitos ✨</button>
+            <button onclick="answerQuiz('quiz-math-1', false, this, 0, 0, 'next-math-1')" class="p-3 border-2 rounded-xl text-center text-sm font-bold text-slate-700 bg-slate-50">6</button>
           </div>
+          <button id="next-math-1" onclick="showNextQuestion('math-q1', 'math-q2')" class="hidden w-full mt-4 py-2.5 bg-pink-600 hover:bg-pink-700 text-white font-extrabold text-xs rounded-xl shadow transition">
+            Próxima Pergunta ➔
+          </button>
         </div>
 
-        <!-- Quiz 2: Geometria -->
-        <div class="border-t pt-4 border-slate-100">
-          <h3 class="font-bold text-slate-800 text-sm mb-2">2. Geometria Espacial ⚽</h3>
-          <p class="text-xs text-slate-600 mb-3">Uma bola de futebol lembra qual forma geométrica?</p>
+        <!-- Pergunta 2 (NOVA) -->
+        <div id="math-q2" class="hidden bg-white p-4 rounded-2xl border-2 border-pink-200 shadow-sm">
+          <h3 class="font-extrabold text-slate-800 text-sm mb-2">2. Geometria Espacial 🎲</h3>
+          <p class="text-xs text-slate-600 mb-3">Um dado de jogo de tabuleiro lembra qual figura geométrica espacial?</p>
           <div class="grid grid-cols-2 gap-2" id="quiz-math-2">
-            <button onclick="answerQuiz('quiz-math-2', true, this)" class="p-3 border rounded-xl text-left text-xs font-bold text-slate-700">Esfera ✨</button>
-            <button onclick="answerQuiz('quiz-math-2', false, this)" class="p-3 border rounded-xl text-left text-xs font-bold text-slate-700">Cubo</button>
+            <button onclick="answerQuiz('quiz-math-2', true, this, 20, 30, 'next-math-2')" class="p-3 border-2 rounded-xl text-left text-xs font-bold text-slate-700 bg-slate-50">Cubo ✨</button>
+            <button onclick="answerQuiz('quiz-math-2', false, this, 0, 0, 'next-math-2')" class="p-3 border-2 rounded-xl text-left text-xs font-bold text-slate-700 bg-slate-50">Esfera</button>
           </div>
+          <button id="next-math-2" onclick="showNextQuestion('math-q2', 'math-q3')" class="hidden w-full mt-4 py-2.5 bg-pink-600 hover:bg-pink-700 text-white font-extrabold text-xs rounded-xl shadow transition">
+            Próxima Pergunta ➔
+          </button>
         </div>
 
-        <!-- Quiz 3: Tabuada -->
-        <div class="border-t pt-4 border-slate-100">
-          <h3 class="font-bold text-slate-800 text-sm mb-2">3. Tabuada Rápida ✖️</h3>
-          <p class="text-xs text-slate-600 mb-3">Quanto é <strong>4 x 5</strong>?</p>
+        <!-- Pergunta 3 (NOVA) -->
+        <div id="math-q3" class="hidden bg-white p-4 rounded-2xl border-2 border-pink-200 shadow-sm">
+          <h3 class="font-extrabold text-slate-800 text-sm mb-2">3. Tabuada Divertida ✖️</h3>
+          <p class="text-xs text-slate-600 mb-3">Se cada caixa tem 5 lápis de cor, quantos lápis há em 3 caixas? (3 x 5)</p>
           <div class="grid grid-cols-3 gap-2" id="quiz-math-3">
-            <button onclick="answerQuiz('quiz-math-3', false, this)" class="p-3 border rounded-xl text-center text-sm font-bold text-slate-700">15</button>
-            <button onclick="answerQuiz('quiz-math-3', true, this)" class="p-3 border rounded-xl text-center text-sm font-bold text-slate-700">20 ✨</button>
-            <button onclick="answerQuiz('quiz-math-3', false, this)" class="p-3 border rounded-xl text-center text-sm font-bold text-slate-700">25</button>
+            <button onclick="answerQuiz('quiz-math-3', false, this, 0, 0, null)" class="p-3 border-2 rounded-xl text-center text-sm font-bold text-slate-700 bg-slate-50">10</button>
+            <button onclick="answerQuiz('quiz-math-3', true, this, 20, 30, null)" class="p-3 border-2 rounded-xl text-center text-sm font-bold text-slate-700 bg-slate-50">15 Lápis ✨</button>
+            <button onclick="answerQuiz('quiz-math-3', false, this, 0, 0, null)" class="p-3 border-2 rounded-xl text-center text-sm font-bold text-slate-700 bg-slate-50">20</button>
           </div>
         </div>
       </div>
@@ -326,48 +326,45 @@
 
     <!-- 5. TAB: ÉTICA & RECICLAGEM -->
     <div id="view-etica" class="view-content hidden">
-      <div class="bg-white rounded-3xl p-6 border-2 border-emerald-100 shadow-sm space-y-6">
+      <div class="bg-emerald-50 rounded-3xl p-6 border-3 border-emerald-300 shadow-md space-y-6">
         <div>
-          <h2 class="text-xl font-extrabold text-emerald-700 flex items-center gap-2">
-            <span>♻️</span> Ética & Meio Ambiente
-          </h2>
-          <p class="text-xs text-slate-500">Conheça os 5 Rs da Sustentabilidade!</p>
+          <h2 class="text-xl font-black text-emerald-800 flex items-center gap-2"><span>♻️</span> Ética & Meio Ambiente</h2>
+          <p class="text-xs text-emerald-600 font-medium">Aprenda a cuidar do planeta com os 5 Rs!</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-          <div class="p-3 bg-emerald-50 rounded-2xl border border-emerald-100 text-center">
-            <div class="text-2xl mb-1">💭</div>
-            <div class="font-bold text-emerald-800 text-xs">Repensar</div>
-            <div class="text-[10px] text-slate-600 mt-0.5">Pensar antes de comprar</div>
-          </div>
-          <div class="p-3 bg-emerald-50 rounded-2xl border border-emerald-100 text-center">
-            <div class="text-2xl mb-1">🛑</div>
-            <div class="font-bold text-emerald-800 text-xs">Recusar</div>
-            <div class="text-[10px] text-slate-600 mt-0.5">Evitar plásticos desnecessários</div>
-          </div>
-          <div class="p-3 bg-emerald-50 rounded-2xl border border-emerald-100 text-center">
-            <div class="text-2xl mb-1">📉</div>
-            <div class="font-bold text-emerald-800 text-xs">Reduzir</div>
-            <div class="text-[10px] text-slate-600 mt-0.5">Gastar menos água e luz</div>
-          </div>
-          <div class="p-3 bg-emerald-50 rounded-2xl border border-emerald-100 text-center">
-            <div class="text-2xl mb-1">🎨</div>
-            <div class="font-bold text-emerald-800 text-xs">Reutilizar</div>
-            <div class="text-[10px] text-slate-600 mt-0.5">Dar novos usos a embalagens</div>
-          </div>
-          <div class="p-3 bg-emerald-50 rounded-2xl border border-emerald-100 text-center">
-            <div class="text-2xl mb-1">♻️</div>
-            <div class="font-bold text-emerald-800 text-xs">Reciclar</div>
-            <div class="text-[10px] text-slate-600 mt-0.5">Separar o lixo corretamente</div>
-          </div>
-        </div>
-
-        <div class="border-t pt-4 border-slate-100">
-          <h3 class="font-bold text-slate-800 text-sm mb-2">Desafio da Lixeira Reciclavel 🗑️</h3>
+        <!-- Pergunta 1 -->
+        <div id="ethics-q1" class="bg-white p-4 rounded-2xl border-2 border-emerald-200 shadow-sm">
+          <h3 class="font-extrabold text-slate-800 text-sm mb-2">1. Desafio da Lixeira Reciclável 🗑️</h3>
           <p class="text-xs text-slate-600 mb-3">Em qual lixeira devemos descartar garrafas plásticas vazias?</p>
-          <div class="grid grid-cols-2 gap-2" id="quiz-ethics">
-            <button onclick="answerQuiz('quiz-ethics', true, this)" class="p-3 border rounded-xl text-left text-xs font-bold text-slate-700">Lixeira Vermelha (Plástico) ✨</button>
-            <button onclick="answerQuiz('quiz-ethics', false, this)" class="p-3 border rounded-xl text-left text-xs font-bold text-slate-700">Lixeira Azul (Papel)</button>
+          <div class="grid grid-cols-2 gap-2" id="quiz-ethics-1">
+            <button onclick="answerQuiz('quiz-ethics-1', true, this, 20, 30, 'next-ethics-1')" class="p-3 border-2 rounded-xl text-left text-xs font-bold text-slate-700 bg-slate-50">Lixeira Vermelha (Plástico) ✨</button>
+            <button onclick="answerQuiz('quiz-ethics-1', false, this, 0, 0, 'next-ethics-1')" class="p-3 border-2 rounded-xl text-left text-xs font-bold text-slate-700 bg-slate-50">Lixeira Azul (Papel)</button>
+          </div>
+          <button id="next-ethics-1" onclick="showNextQuestion('ethics-q1', 'ethics-q2')" class="hidden w-full mt-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl shadow transition">
+            Próxima Pergunta ➔
+          </button>
+        </div>
+
+        <!-- Pergunta 2 (NOVA) -->
+        <div id="ethics-q2" class="hidden bg-white p-4 rounded-2xl border-2 border-emerald-200 shadow-sm">
+          <h3 class="font-extrabold text-slate-800 text-sm mb-2">2. O R de Reutilizar 🎨</h3>
+          <p class="text-xs text-slate-600 mb-3">Transformar um pote de sorvete em um vaso de flores é um exemplo de:</p>
+          <div class="grid grid-cols-2 gap-2" id="quiz-ethics-2">
+            <button onclick="answerQuiz('quiz-ethics-2', true, this, 20, 30, 'next-ethics-2')" class="p-3 border-2 rounded-xl text-left text-xs font-bold text-slate-700 bg-slate-50">Reutilizar ✨</button>
+            <button onclick="answerQuiz('quiz-ethics-2', false, this, 0, 0, 'next-ethics-2')" class="p-3 border-2 rounded-xl text-left text-xs font-bold text-slate-700 bg-slate-50">Desperdiçar</button>
+          </div>
+          <button id="next-ethics-2" onclick="showNextQuestion('ethics-q2', 'ethics-q3')" class="hidden w-full mt-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs rounded-xl shadow transition">
+            Próxima Pergunta ➔
+          </button>
+        </div>
+
+        <!-- Pergunta 3 (NOVA) -->
+        <div id="ethics-q3" class="hidden bg-white p-4 rounded-2xl border-2 border-emerald-200 shadow-sm">
+          <h3 class="font-extrabold text-slate-800 text-sm mb-2">3. Economia de Recursos 💧</h3>
+          <p class="text-xs text-slate-600 mb-3">Fechar a torneira enquanto escovamos os dentes ajuda a:</p>
+          <div class="grid grid-cols-2 gap-2" id="quiz-ethics-3">
+            <button onclick="answerQuiz('quiz-ethics-3', false, this, 0, 0, null)" class="p-3 border-2 rounded-xl text-left text-xs font-bold text-slate-700 bg-slate-50">Gastar mais água</button>
+            <button onclick="answerQuiz('quiz-ethics-3', true, this, 20, 30, null)" class="p-3 border-2 rounded-xl text-left text-xs font-bold text-slate-700 bg-slate-50">Reduzir o consumo de água ✨</button>
           </div>
         </div>
       </div>
@@ -375,62 +372,74 @@
 
     <!-- 6. TAB: LOJINHA DE PRÊMIOS -->
     <div id="view-loja" class="view-content hidden">
-      <div class="bg-white rounded-3xl p-6 border-2 border-amber-100 shadow-sm">
-        <div class="flex items-center justify-between border-b pb-4 border-slate-100">
+      <div class="bg-amber-50 rounded-3xl p-6 border-3 border-amber-300 shadow-md">
+        <div class="flex items-center justify-between border-b-2 pb-4 border-amber-200">
           <div>
-            <h2 class="text-xl font-extrabold text-amber-600 flex items-center gap-2">
-              <span>🎁</span> Lojinha de Prêmios
-            </h2>
-            <p class="text-xs text-slate-500">Troque suas estrelas por recompensas incríveis no mundo real!</p>
+            <h2 class="text-xl font-black text-amber-800 flex items-center gap-2"><span>🎁</span> Lojinha de Prêmios</h2>
+            <p class="text-xs text-amber-700 font-medium">Troque suas estrelas por recompensas incríveis!</p>
           </div>
-          <div class="bg-amber-50 border border-amber-200 px-3 py-1 rounded-2xl font-black text-amber-600 text-sm flex items-center gap-1">
+          <div class="bg-amber-200 border-2 border-amber-400 px-3 py-1 rounded-2xl font-black text-amber-900 text-sm flex items-center gap-1 shadow-sm">
             <span>⭐</span> <span id="shop-star-balance">120</span>
           </div>
         </div>
 
-        <!-- Rewards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
           
-          <!-- Reward 1 -->
-          <div class="bg-amber-50/50 p-4 rounded-2xl border border-amber-200 flex flex-col justify-between">
+          <!-- Recompensa Simples 1 (NOVA) -->
+          <div class="bg-white p-4 rounded-2xl border-2 border-amber-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="text-3xl mb-2">🍦</div>
+              <h3 class="font-black text-slate-800 text-sm">Escolher a Sobremesa</h3>
+              <p class="text-xs text-slate-500 mt-1">Você escolhe qual docinho ou sorvete vai querer!</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span class="font-black text-amber-600 text-xs">80 ⭐</span>
+              <button onclick="redeemReward('Escolher a Sobremesa', 80)" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition shadow">
+                Resgatar
+              </button>
+            </div>
+          </div>
+
+          <!-- Recompensa Simples 2 (NOVA) -->
+          <div class="bg-white p-4 rounded-2xl border-2 border-amber-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="text-3xl mb-2">🎠</div>
+              <h3 class="font-black text-slate-800 text-sm">Escolher o Passeio</h3>
+              <p class="text-xs text-slate-500 mt-1">Decida para onde ir no próximo passeio do fim de semana.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span class="font-black text-amber-600 text-xs">150 ⭐</span>
+              <button onclick="redeemReward('Escolher o Passeio', 150)" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition shadow">
+                Resgatar
+              </button>
+            </div>
+          </div>
+
+          <!-- Recompensa 3 -->
+          <div class="bg-white p-4 rounded-2xl border-2 border-amber-200 shadow-sm flex flex-col justify-between">
             <div>
               <div class="text-3xl mb-2">📱</div>
-              <h3 class="font-extrabold text-slate-800 text-sm">40 Minutos a Mais de Tela</h3>
-              <p class="text-xs text-slate-500 mt-1">Tempo extra para seus jogos ou vídeos preferidos.</p>
+              <h3 class="font-black text-slate-800 text-sm">40 Minutos de Tela</h3>
+              <p class="text-xs text-slate-500 mt-1">Tempo extra para assistir vídeos ou jogar seus games.</p>
             </div>
-            <div class="mt-4 pt-3 border-t border-amber-200/60 flex items-center justify-between">
-              <span class="font-extrabold text-amber-600 text-xs">300 ⭐</span>
-              <button onclick="redeemReward('40 Minutos de Tela', 300)" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition shadow-sm">
+            <div class="mt-4 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span class="font-black text-amber-600 text-xs">300 ⭐</span>
+              <button onclick="redeemReward('40 Minutos de Tela', 300)" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition shadow">
                 Resgatar
               </button>
             </div>
           </div>
 
-          <!-- Reward 2 -->
-          <div class="bg-amber-50/50 p-4 rounded-2xl border border-amber-200 flex flex-col justify-between">
-            <div>
-              <div class="text-3xl mb-2">🛝</div>
-              <h3 class="font-extrabold text-slate-800 text-sm">Passeio Especial no Parque</h3>
-              <p class="text-xs text-slate-500 mt-1">Um tempo extra para brincar ao ar livre.</p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-amber-200/60 flex items-center justify-between">
-              <span class="font-extrabold text-amber-600 text-xs">200 ⭐</span>
-              <button onclick="redeemReward('Passeio no Parque', 200)" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition shadow-sm">
-                Resgatar
-              </button>
-            </div>
-          </div>
-
-          <!-- Reward 3 -->
-          <div class="bg-amber-50/50 p-4 rounded-2xl border border-amber-200 flex flex-col justify-between">
+          <!-- Recompensa 4 -->
+          <div class="bg-white p-4 rounded-2xl border-2 border-amber-200 shadow-sm flex flex-col justify-between">
             <div>
               <div class="text-3xl mb-2">🎬</div>
-              <h3 class="font-extrabold text-slate-800 text-sm">Escolher o Filme da Família</h3>
-              <p class="text-xs text-slate-500 mt-1">Você decide o que a família vai assistir no fim de semana.</p>
+              <h3 class="font-black text-slate-800 text-sm">Escolher o Filme</h3>
+              <p class="text-xs text-slate-500 mt-1">Sua escolha de filme na noite de cinema da família.</p>
             </div>
-            <div class="mt-4 pt-3 border-t border-amber-200/60 flex items-center justify-between">
-              <span class="font-extrabold text-amber-600 text-xs">150 ⭐</span>
-              <button onclick="redeemReward('Escolher Filme', 150)" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition shadow-sm">
+            <div class="mt-4 pt-3 border-t border-amber-100 flex items-center justify-between">
+              <span class="font-black text-amber-600 text-xs">200 ⭐</span>
+              <button onclick="redeemReward('Escolher Filme', 200)" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs rounded-xl transition shadow">
                 Resgatar
               </button>
             </div>
@@ -441,6 +450,33 @@
     </div>
 
   </main>
+
+  <!-- MODAL / POP-UP DE RECOMPENSA -->
+  <div id="reward-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center border-4 border-yellow-400 shadow-2xl relative">
+      <div class="text-6xl mb-2">🎉</div>
+      <h3 class="text-2xl font-black text-pink-600">Parabéns, Alice!</h3>
+      <p class="text-xs text-slate-600 font-bold mt-1">Você mandou super bem!</p>
+      
+      <div class="my-4 bg-yellow-50 p-4 rounded-2xl border-2 border-yellow-300 flex justify-around items-center">
+        <div class="text-center">
+          <span class="text-3xl">⭐</span>
+          <div class="text-lg font-black text-amber-600" id="modal-stars-gain">+20</div>
+          <div class="text-[10px] uppercase font-bold text-slate-500">Estrelas</div>
+        </div>
+        <div class="h-8 w-0.5 bg-yellow-200"></div>
+        <div class="text-center">
+          <span class="text-3xl">✨</span>
+          <div class="text-lg font-black text-purple-600" id="modal-xp-gain">+30</div>
+          <div class="text-[10px] uppercase font-bold text-slate-500">Pontos XP</div>
+        </div>
+      </div>
+
+      <button onclick="closeRewardModal()" class="w-full py-3 bg-pink-500 hover:bg-pink-600 text-white font-black text-sm rounded-2xl shadow-md transition">
+        Continuar Brincando! 🚀
+      </button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

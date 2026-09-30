@@ -1,4 +1,3 @@
-// ESTRUTURA DE DADOS COM LOCALSTORAGE
 let userData = {
   stars: 120,
   xp: 450,
@@ -6,7 +5,6 @@ let userData = {
   streak: 3
 };
 
-// Carregar dados salvos ao iniciar a página
 function loadSavedData() {
   const saved = localStorage.getItem('alice_gamification_data');
   if (saved) {
@@ -19,12 +17,10 @@ function loadSavedData() {
   updateUI();
 }
 
-// Salvar progresso
 function saveData() {
   localStorage.setItem('alice_gamification_data', JSON.stringify(userData));
 }
 
-// Atualizar interface
 function updateUI() {
   document.getElementById('user-stars').innerText = userData.stars;
   document.getElementById('user-xp').innerText = userData.xp;
@@ -35,12 +31,10 @@ function updateUI() {
     document.getElementById('shop-star-balance').innerText = userData.stars;
   }
 
-  // Atualizar barra de XP
   const xpPercentage = Math.min(100, Math.floor((userData.xp / 1000) * 100));
   document.getElementById('xp-bar').style.width = `${xpPercentage}%`;
 }
 
-// Tocar Som de Vitória
 function playWinSound() {
   try {
     const synth = new Tone.Synth().toDestination();
@@ -50,22 +44,40 @@ function playWinSound() {
     synth.triggerAttackRelease("G5", "8n", now + 0.2);
     synth.triggerAttackRelease("C6", "4n", now + 0.3);
   } catch (e) {
-    console.log("Audio Web API aguardando interação.");
+    console.log("Audio API aguardando ação.");
   }
 }
 
-// Soltar Confete
 function triggerConfetti() {
   if (typeof confetti === 'function') {
     confetti({
-      particleCount: 70,
-      spread: 60,
+      particleCount: 80,
+      spread: 70,
       origin: { y: 0.6 }
     });
   }
 }
 
-// Troca de Abas
+function showRewardModal(starsGained, xpGained) {
+  document.getElementById('modal-stars-gain').innerText = `+${starsGained}`;
+  document.getElementById('modal-xp-gain').innerText = `+${xpGained}`;
+  document.getElementById('reward-modal').classList.remove('hidden');
+}
+
+function closeRewardModal() {
+  document.getElementById('reward-modal').classList.add('hidden');
+}
+
+function scrollTabs(direction) {
+  const container = document.getElementById('tabs-container');
+  const scrollAmount = 200;
+  if (direction === 'left') {
+    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  } else {
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+}
+
 function switchTab(tabName) {
   const views = document.querySelectorAll('.view-content');
   views.forEach(v => v.classList.add('hidden'));
@@ -80,8 +92,8 @@ function switchTab(tabName) {
   if (activeTabBtn) activeTabBtn.classList.add('active');
 }
 
-// Lógica de Atividade / Quizzes
-function answerQuiz(containerId, isCorrect, btnElement) {
+// Lógica de resposta com suporte ao botão de Próxima Pergunta
+function answerQuiz(containerId, isCorrect, btnElement, starsGain = 20, xpGain = 30, nextBtnId = null) {
   const container = document.getElementById(containerId);
   const buttons = container.querySelectorAll('button');
 
@@ -94,20 +106,32 @@ function answerQuiz(containerId, isCorrect, btnElement) {
     btnElement.classList.remove('opacity-50');
     btnElement.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
     
-    userData.stars += 20;
-    userData.xp += 30;
+    userData.stars += starsGain;
+    userData.xp += xpGain;
     saveData();
     updateUI();
     
     playWinSound();
     triggerConfetti();
+    showRewardModal(starsGain, xpGain);
   } else {
     btnElement.classList.remove('opacity-50');
     btnElement.classList.add('bg-rose-500', 'text-white', 'border-rose-600');
   }
+
+  // Revelar o botão de próxima pergunta se existir
+  if (nextBtnId) {
+    const nextBtn = document.getElementById(nextBtnId);
+    if (nextBtn) nextBtn.classList.remove('hidden');
+  }
 }
 
-// Checklist do Dever de Casa
+// Transição entre perguntas da mesma disciplina
+function showNextQuestion(currentQuestionId, nextQuestionId) {
+  document.getElementById(currentQuestionId).classList.add('hidden');
+  document.getElementById(nextQuestionId).classList.remove('hidden');
+}
+
 function toggleHomeworkStep() {
   const checkboxes = document.querySelectorAll('#homework-list input[type="checkbox"]');
   const allChecked = Array.from(checkboxes).every(cb => cb.checked);
@@ -115,23 +139,27 @@ function toggleHomeworkStep() {
 
   if (allChecked) {
     finishBtn.disabled = false;
-    finishBtn.classList.remove('bg-slate-200', 'text-slate-400', 'cursor-not-allowed');
+    finishBtn.classList.remove('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
     finishBtn.classList.add('bg-purple-600', 'hover:bg-purple-700', 'text-white', 'cursor-pointer', 'shadow-md');
   } else {
     finishBtn.disabled = true;
-    finishBtn.classList.add('bg-slate-200', 'text-slate-400', 'cursor-not-allowed');
+    finishBtn.classList.add('bg-slate-300', 'text-slate-500', 'cursor-not-allowed');
     finishBtn.classList.remove('bg-purple-600', 'hover:bg-purple-700', 'text-white', 'cursor-pointer', 'shadow-md');
   }
 }
 
 function completeHomework() {
-  userData.stars += 50;
-  userData.xp += 80;
+  const starsGain = 50;
+  const xpGain = 80;
+
+  userData.stars += starsGain;
+  userData.xp += xpGain;
   saveData();
   updateUI();
 
   playWinSound();
   triggerConfetti();
+  showRewardModal(starsGain, xpGain);
 
   const finishBtn = document.getElementById('btn-finish-homework');
   finishBtn.innerText = "Dever Concluído! 🎉 (+50 ⭐)";
@@ -139,7 +167,6 @@ function completeHomework() {
   finishBtn.classList.replace('bg-purple-600', 'bg-emerald-500');
 }
 
-// Resgate de Prêmios
 function redeemReward(rewardName, cost) {
   if (userData.stars >= cost) {
     userData.stars -= cost;
@@ -155,7 +182,6 @@ function redeemReward(rewardName, cost) {
   }
 }
 
-// Inicializar ao carregar a página
 window.addEventListener('DOMContentLoaded', () => {
   loadSavedData();
 });
