@@ -1,5 +1,5 @@
 let userData = {
-  stars: 120,
+  stars: 320,
   xp: 450,
   level: 2,
   streak: 3
